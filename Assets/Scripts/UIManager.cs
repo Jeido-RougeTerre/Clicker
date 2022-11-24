@@ -5,12 +5,16 @@ using TMPro;
 
 public class UIManager : MonoBehaviour {
 
-    public GunData Gun;
+    public GunData gun;
     
     ///<summary>
     /// might be smooth
     ///</summary>
-    public CriminalManager Criminal;
+    public List<CriminalData> criminals;
+    public Dictionary<string, CriminalData> killed = new Dictionary<string, CriminalData>();
+    private CriminalData actualCriminal;
+
+    public CriminalManager criminalManager;
 
     public TMP_Text moneyText;
 
@@ -18,19 +22,34 @@ public class UIManager : MonoBehaviour {
 
     private void Start() {
         moneyText.text = money + "$";
+        actualCriminal = Resources.Load<CriminalData>("Criminals/Shadow");
+        eventHandler.OnCriminalDeath.AddListener(ChangeCriminal);
+        eventHandler.OnCriminalSpawn.Invoke(actualCriminal);
+    }
+
+    public void ChangeCriminal(CriminalData prevCrim) {
+        AddMoney(prevCrim.m_Bounty);
+        if (!killed.ContainsKey(prevCrim.m_CriminalName) && prevCrim.m_CriminalName != "Shadow") {
+            killed.Add(prevCrim.m_CriminalName, prevCrim);
+        }
+        actualCriminal = criminals[Random.Range(0, killed.Count + 1)];
+        eventHandler.OnCriminalSpawn.Invoke(actualCriminal);
     }
 
     public void ShootCriminal() {
-        Criminal.Damage(Gun.getDamage());
+        criminalManager.Damage(gun.getDamage());
     }
 
     public void AddMoney(uint val) {
-        money = (uint)Mathf.Clamp(money + val, 0, uint.MaxValue); //avoiding uint overflow
+        money = (uint)Mathf.Clamp(money + val, 0, uint.MaxValue); //avoiding uint overflow (it's posssible i swear)
         moneyText.text = money + "$";
+    }
+    /// <summary> WIP </summary>
+    public bool SubMoney(uint val) {
+        money = (uint)Mathf.Clamp(money - val, 0, uint.MaxValue); //avoiding uint overflow (it's posssible i swear)
+        moneyText.text = money + "$";
+        return true;
     }
 
-    public void SubMoney(uint val) {
-        money = (uint)Mathf.Clamp(money - val, 0, uint.MaxValue); //avoiding uint overflow
-        moneyText.text = money + "$";
-    }
+
 }

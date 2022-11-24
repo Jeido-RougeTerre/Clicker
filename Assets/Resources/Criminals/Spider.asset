@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76fc72d16c80a3f468670e1d7cf3cf31, type: 3}
-  m_Name: Johny
+  m_Name: Spider
   m_EditorClassIdentifier: 
-  m_CriminalName: Johny
-  m_Health: 1
-  m_Bounty: 1
+  m_CriminalName: Spider
+  m_Health: 100
+  m_Bounty: 150
   m_Portrait: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e794bb027e128dd4d9a7fc4d47b8d5a7, type: 3}

@@ -23,10 +23,7 @@ public class CriminalManager : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-        dead = false;
-        health = criminal.m_Health;
-		_nameText.text = criminal.m_CriminalName;
-		_healthText.text = health + "/" + health;
+        eventHandler.OnCriminalSpawn.AddListener(SetCriminal);
     }
 
     public bool IsDead() {
@@ -43,7 +40,7 @@ public class CriminalManager : MonoBehaviour {
     public void Die(Damage dmg) {
         dead = true;
 		Debug.Log("Criminal '" + criminal.m_CriminalName + "' have died from " + dmg.name + ", You won " + criminal.m_Bounty + "$.");
-        manager.AddMoney(criminal.m_Bounty);
+        eventHandler.OnCriminalDeath.Invoke(criminal);
     }
 
     public void Hurt(Damage damage) {
@@ -77,6 +74,15 @@ public class CriminalManager : MonoBehaviour {
         if (Health <= 0) {
             Die(dmg);
         }
+    }
+
+    public void SetCriminal(CriminalData data) {
+        criminal = data;
+        dead = false;
+        health = data.m_Health;
+		_nameText.text = data.m_CriminalName;
+		_healthText.text = health + "/" + health;
+        _healthSlider.value = (float)health / (float)data.m_Health;
     }
      
 }
