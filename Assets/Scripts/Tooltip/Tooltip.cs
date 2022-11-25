@@ -25,14 +25,18 @@ public class Tooltip : MonoBehaviour {
 	}
 
 	private void Update() {
+		Vector2 offset = new Vector2();
+		Vector2 pos = Input.mousePosition;
+
+		offset.x = -(Screen.width / 2f);
+		offset.y = Screen.height;
+
 		if (Application.isEditor) {
 			layoutElement.enabled = Mathf.Max(headerField.preferredWidth, contentField.preferredWidth) >= layoutElement.preferredWidth;
 		}
 
-		Vector2 pos = Input.mousePosition;
-
-		float pX = pos.x / Screen.width;
-		float pY = (pos.y - 64) / Screen.height;
+		float pX = (pos.x + offset.x) / Screen.width;
+		float pY = (pos.y + offset.y) / Screen.height;
 
 
 		rectTransform.pivot = new Vector2(pX, pY);
