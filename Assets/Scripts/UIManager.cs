@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour {
 
     public uint money = 0;
 
+    public List<GunData> gunList = new List<GunData>();
+
     private void Start() {
         moneyText.text = money + "$";
         actualCriminal = Resources.Load<CriminalData>("Criminals/Shadow");
@@ -32,7 +34,7 @@ public class UIManager : MonoBehaviour {
         if (!killed.ContainsKey(prevCrim.m_CriminalName) && prevCrim.m_CriminalName != "Shadow") {
             killed.Add(prevCrim.m_CriminalName, prevCrim);
         }
-        actualCriminal = criminals[Random.Range(0, killed.Count + 1)];
+        actualCriminal = criminals[Random.Range(0, Mathf.Min(killed.Count + 1, criminals.Count))];
         eventHandler.OnCriminalSpawn.Invoke(actualCriminal);
     }
 
