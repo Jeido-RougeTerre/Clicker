@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a96f2cb2264f5745a55ee13ef45b918, type: 3}
-  m_Name: Spicy Gun
+  m_Script: {fileID: 11500000, guid: 76fc72d16c80a3f468670e1d7cf3cf31, type: 3}
+  m_Name: gecko
   m_EditorClassIdentifier: 
-  m_GunName: Spicy gun
-  m_MagazineSize: 1
-  m_MagazinePrice: 0
-  m_GunPrice: 100
-  m_Type: 4
-  m_Sprite: {fileID: 21300000, guid: d2bfcd5f3e2895c4c9fe14f6299bb300, type: 3}
-  m_Damage: 7
+  m_CriminalName: gregcko the nachos lover
+  m_Health: 400
+  m_Bounty: 500
+  m_Portrait: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6edba6b3bde32c54694eea5200ac9f0f, type: 3}
