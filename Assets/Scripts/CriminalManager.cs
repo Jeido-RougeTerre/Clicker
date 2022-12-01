@@ -10,11 +10,6 @@ public class CriminalManager : MonoBehaviour {
     public TMP_Text _nameText;
     public TMP_Text _healthText;
 
-    ///<summary>
-    /// I want to speak to your manager
-    ///</summary>
-    public UIManager manager;
-
 	public CriminalData criminal;
 
     private short health;	
@@ -69,7 +64,7 @@ public class CriminalManager : MonoBehaviour {
         } else {
             Hurt(dmg);
         }
-		_healthText.text = health + "/" + health;
+		_healthText.text = health + "/" + criminal.m_Health;
         _healthSlider.value = (float)health / (float)criminal.m_Health;
         if (Health <= 0) {
             Die(dmg);
@@ -81,7 +76,7 @@ public class CriminalManager : MonoBehaviour {
         dead = false;
         health = data.m_Health;
 		_nameText.text = data.m_CriminalName;
-		_healthText.text = health + "/" + health;
+		_healthText.text = health + "/" + data.m_Health;
         _healthSlider.value = (float)health / (float)data.m_Health;
     }
      
