@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
 
 	public void SetGun(GunData newGun)
 	{
+		Debug.Log("Set gun : " + newGun.m_GunName);
 		if (!inventoryManager.guns.Contains(newGun))
 		{
 			inventoryManager.guns.Add(newGun);
