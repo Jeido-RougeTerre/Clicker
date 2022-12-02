@@ -29,7 +29,7 @@ public class ItemShop : MonoBehaviour
 		tooltip.header = gun.m_GunName;
 		img.sprite = gun.m_Sprite;
 		headerField.SetText(gun.m_GunName);
-		priceField.SetText(gun.m_GunPrice.ToString() + "$");
+		priceField.SetText(gun.m_GunPrice.ToString() + "$ / DMG: " + gun.getDamage().dmg);
 	}
 
 	public void Buy()
